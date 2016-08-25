@@ -1,8 +1,5 @@
 # PP助手高速下载外部接入方案 #
 
-## 方案内部逻辑 ##
-![]()
-
 ## 页面接入逻辑 ##
 > 通过 `Pdlh` 方案，接入方不用考虑内部实现逻辑，只需要简单的一步就可以轻松接入了
 
@@ -27,7 +24,7 @@ PP为第三方提供了多种合作方式方案，都可通过 `Pdlh` 接口传�
 - 模式1：使用业务方提供的durl下载目标App
 
 ## 接入流程 ##
-![](https://github.com/ppfe/pp-dl-highspeed/blob/master/imgs/%E6%8E%A5%E5%85%A5%E6%B5%81%E7%A8%8B.png?raw=true)
+![](https://github.com/ppfe/pdlh/blob/master/imgs/%E6%8E%A5%E5%85%A5%E6%B5%81%E7%A8%8B.png?raw=true)
 
 ## 1. 申请接入 ##
 业务方接入，向PP接口人申请分配接入所需要的PP渠道 `channel`、统计来源参数 `ch_src`
@@ -94,6 +91,9 @@ PP为第三方接入提供了方案相关的JS库，直接引用即可
 
 ## 完整例子 ##
 DEMO请移步：【[DEMO完整例子]()】
+
+## 附：方案内部实现逻辑 ##
+![](https://github.com/ppfe/pdlh/blob/master/imgs/%E6%96%B9%E6%A1%88%E5%86%85%E9%83%A8%E9%80%BB%E8%BE%91.png?raw=true)
 
 ## FAQ ##
 
