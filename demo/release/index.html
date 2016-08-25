@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+    <title>PP助手高速下载DEMO</title>
+    <meta name="description" content="PP助手">
+</head>
+
+<body>
+	<ul>
+    	<li class="require">
+    		<label>channel</label>
+    		<input type="text" id="inputChannel" value="pp_2" placeholder="PP渠道号，由PP分配" />
+    	</li>
+    	<li class="require">
+    		<label>ch_src</label>
+    		<input type="text" id="inputChSrc" value="dl-highspeed-demo-ch_src" placeholder="统计来源，由PP分配" />
+    	</li>
+    	<li class="require">
+    		<label>packageName</label>
+    		<input type="text" id="inputPackageName" value="com.outfit7.talkingtom2free" placeholder="目标APP包名" />
+    	</li>
+    	<li>
+    		<label>durl</label>
+    		<input type="text" id="inputDurl" value="http://ucdl.25pp.com/fs04/2016/01/15/7/2_613b8549eaaec403b3ee64142100a861.apk" placeholder="目标APP原始下载地址" />
+    	</li>
+    	<li>
+		    <label>bs</label>
+		    <select id="inputBs">
+		    	<option value="0">正常模式，不重复刷量</option>
+		    	<option value="1">商业模式，重复刷</option>
+		    </select>
+    	</li>
+    	<li>
+		    <label>mode</label>
+		    <select id="inputMode">
+		    	<option value="0">使用PP助手资源库下载目标App</option>
+		    	<option value="1">强制使用业务方提供的durl下载目标App</option>
+		    </select>
+    	</li>
+    	<li>
+		    <select id="debug">
+		    	<option value="0">prod</option>
+		    	<option value="1">debug</option>
+		    </select>
+    	</li>
+    </ul>
+    <div class="btn" id="btnTest">提交</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+    <script src="http://a.img.pp.cn/upload_files/js/pp-dl-highspeed.js?2016082401"></script>
+<script type="text/javascript" src="Index.js?c69494213302bebb3e68"></script></body>
+</html>
