@@ -13,19 +13,6 @@ $('#btnTest').click(function() {
 		mode = parseInt($('#inputMode').val()),
 		debug = !!parseInt($('#debug').val());
 
-	if(!channel) {
-		alert('channel不能为空');
-		return;
-	}
-	if(!ch_src) {
-		alert('ch_src不能为空');
-		return;
-	}
-	if(!packageName && !durl) {
-		alert('packageName 和 durl 必填一个！');
-		return;
-	}
-
 	// Pdlh由以下JS提供，具体问题可以找PP助手技术同学咨询
 	// http://a.img.pp.cn/upload_files/js/pp-dl-highspeed.js
 	Pdlh.downloadFast({
