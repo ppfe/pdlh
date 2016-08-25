@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>PP助手高速下载外部简易接入方案 by ppfe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">PP助手高速下载外部简易接入方案</h1>
+      <h2 class="project-tagline">Pdlh</h2>
+      <a href="https://github.com/ppfe/pdlh" class="btn">View on GitHub</a>
+      <a href="https://github.com/ppfe/pdlh/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/ppfe/pdlh/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="pp助手高速下载外部接入方案" class="anchor" href="#pp%E5%8A%A9%E6%89%8B%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD%E5%A4%96%E9%83%A8%E6%8E%A5%E5%85%A5%E6%96%B9%E6%A1%88" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PP助手高速下载外部接入方案</h1>
+
+<h2>
+<a id="页面接入逻辑" class="anchor" href="#%E9%A1%B5%E9%9D%A2%E6%8E%A5%E5%85%A5%E9%80%BB%E8%BE%91" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>页面接入逻辑</h2>
+
+<blockquote>
+<p>通过 <code>Pdlh</code> 方案，接入方不用考虑内部实现逻辑，只需要简单的一步就可以轻松接入了</p>
+</blockquote>
+
+<ol>
+<li>用户点击【高速下载】</li>
+<li>调用 <code>Pdlh.downloadFast</code> 进行高速下载</li>
+</ol>
+
+<h2>
+<a id="合作方式" class="anchor" href="#%E5%90%88%E4%BD%9C%E6%96%B9%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>合作方式</h2>
+
+<p>PP为第三方提供了多种合作方式方案，都可通过 <code>Pdlh</code> 接口传参实现</p>
+
+<h3>
+<a id="a-商业模式" class="anchor" href="#a-%E5%95%86%E4%B8%9A%E6%A8%A1%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>a. 商业模式</h3>
+
+<p>商业模式通过接口参数 <code>bs</code>控制，具体请查看接口文档</p>
+
+<ul>
+<li>非商业模式：为了避免骚扰用户，PP对高速下载流程做了限制，一个用户只会下载一次PP助手，无论是否下载成功是否安装成功</li>
+<li>商业模式：无限制，PP只要判断到用户没安装PP助手客户端，流程就会走到下载PP客户端的流程</li>
+</ul>
+
+<h3>
+<a id="b-合作模式" class="anchor" href="#b-%E5%90%88%E4%BD%9C%E6%A8%A1%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>b. 合作模式</h3>
+
+<p>合作模式通过接口参数 <code>mode</code>控制，具体请查看接口文档</p>
+
+<ul>
+<li>默认模式：使用PP助手资源库下载目标App</li>
+<li>模式1：使用业务方提供的durl下载目标App</li>
+</ul>
+
+<h2>
+<a id="接入流程" class="anchor" href="#%E6%8E%A5%E5%85%A5%E6%B5%81%E7%A8%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>接入流程</h2>
+
+<p><img src="https://github.com/ppfe/pdlh/blob/master/imgs/%E6%8E%A5%E5%85%A5%E6%B5%81%E7%A8%8B.png?raw=true" alt=""></p>
+
+<h2>
+<a id="1-申请接入" class="anchor" href="#1-%E7%94%B3%E8%AF%B7%E6%8E%A5%E5%85%A5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. 申请接入</h2>
+
+<p>业务方接入，向PP接口人申请分配接入所需要的PP渠道 <code>channel</code>、统计来源参数 <code>ch_src</code></p>
+
+<h3>
+<a id="pp助手高速下载接入方案接口人" class="anchor" href="#pp%E5%8A%A9%E6%89%8B%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD%E6%8E%A5%E5%85%A5%E6%96%B9%E6%A1%88%E6%8E%A5%E5%8F%A3%E4%BA%BA" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PP助手高速下载接入方案接口人：</h3>
+
+<ul>
+<li>推广：@赵小龙</li>
+<li>产品：@詹圣锋，@彭斯特</li>
+<li>技术：@材主，@传人，@僚机</li>
+</ul>
+
+<h2>
+<a id="2-开始接入" class="anchor" href="#2-%E5%BC%80%E5%A7%8B%E6%8E%A5%E5%85%A5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. 开始接入</h2>
+
+<p>PP为第三方接入提供了方案相关的JS库，直接引用即可</p>
+
+<pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://a.img.pp.cn/upload_files/js/pp-dl-highspeed.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<blockquote>
+<p>如果页面已有jQuery或者zepto，则不需要再引用 <code>zepto.min.js</code></p>
+</blockquote>
+
+<h2>
+<a id="3-接口文档" class="anchor" href="#3-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. 接口文档</h2>
+
+<p>引用本JS后，会自动在window对象挂载接口对象 <code>Pdlh</code></p>
+
+<h3>
+<a id="一高速下载接口-pdlhdownloadfast" class="anchor" href="#%E4%B8%80%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD%E6%8E%A5%E5%8F%A3-pdlhdownloadfast" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>一、高速下载接口 <code>Pdlh.downloadFast</code>
+</h3>
+
+<pre><code>Pdlh.downloadFast(config, callback)
+</code></pre>
+
+<h4>
+<a id="11-config-为对象类型可传字段如下" class="anchor" href="#11-config-%E4%B8%BA%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E5%8F%AF%E4%BC%A0%E5%AD%97%E6%AE%B5%E5%A6%82%E4%B8%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.1 <code>config</code> 为对象类型，可传字段如下：</h4>
+
+<ul>
+<li>channel: [必填]PP渠道号，由PP提供</li>
+<li>ch_src: [必填]统计来源，由PP提供</li>
+<li>ch: 统计参数</li>
+<li>packageName: [packageName与durl必填其一]目标APP包名</li>
+<li>durl: [packageName与durl必填其一]目标APP下载地址</li>
+<li>bs: 商业模式选择（0:【默认】不重复刷量，1：商业模式，重复刷）</li>
+<li>mode: 合作模式选择（0：【默认】使用PP助手资源库下载目标App，1：使用业务方提供的durl下载目标App）</li>
+<li>debug: 开发模式，会输出过程日志</li>
+</ul>
+
+<h4>
+<a id="12-callback-为回调函数返回参数如下" class="anchor" href="#12-callback-%E4%B8%BA%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0%E5%A6%82%E4%B8%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.2 <code>callback</code> 为回调函数，返回参数如下：</h4>
+
+<ul>
+<li>error: 错误信息（0：成功，非0：失败），<code>ret.msg</code>中有结果描述</li>
+<li>ret: {Object}结果详情，<code>ret.msg</code>字段描述方法运行结果</li>
+</ul>
+
+<h4>
+<a id="举个栗子" class="anchor" href="#%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>举个栗子</h4>
+
+<pre><code>Pdlh.downloadFast({
+    channel: 'pp_2',
+    ch_src: 'from_demo',
+    ch: 'from_demo_ch',
+    packageName: 'com.outfit7.talkingtom2free',
+    durl: 'http://ucdl.25pp.com/fs04/2016/01/15/7/2_613b8549eaaec403b3ee64142100a861.apk',
+    bs: 1,
+    mode: 1,
+    debug: false
+}, function(error, ret) {
+    if (!error) {
+        console.warn('Pdlh.downloadFast ok.');
+    } else {
+        console.warn('Pdlh.downloadFast failed.');
+    }
+
+    console.log(ret.msg);
+});
+</code></pre>
+
+<h2>
+<a id="完整例子" class="anchor" href="#%E5%AE%8C%E6%95%B4%E4%BE%8B%E5%AD%90" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>完整例子</h2>
+
+<p>DEMO请移步：【<a href="https://github.com/ppfe/pdlh/tree/master/demo">DEMO完整例子</a>】</p>
+
+<h2>
+<a id="附方案内部实现逻辑" class="anchor" href="#%E9%99%84%E6%96%B9%E6%A1%88%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0%E9%80%BB%E8%BE%91" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>附：方案内部实现逻辑</h2>
+
+<p><img src="https://github.com/ppfe/pdlh/blob/master/imgs/%E6%96%B9%E6%A1%88%E5%86%85%E9%83%A8%E9%80%BB%E8%BE%91.png?raw=true" alt=""></p>
+
+<h2>
+<a id="faq" class="anchor" href="#faq" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FAQ</h2>
+
+<h3>
+<a id="1为什么手机明明安装了pp助手还是调不起pp助手进行高速下载" class="anchor" href="#1%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%8B%E6%9C%BA%E6%98%8E%E6%98%8E%E5%AE%89%E8%A3%85%E4%BA%86pp%E5%8A%A9%E6%89%8B%E8%BF%98%E6%98%AF%E8%B0%83%E4%B8%8D%E8%B5%B7pp%E5%8A%A9%E6%89%8B%E8%BF%9B%E8%A1%8C%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1、为什么手机明明安装了PP助手，还是调不起PP助手进行高速下载？</h3>
+
+<p>PP助手调起协议需要PP助手进程在活动状态下才可以进行，所以调起不成功，代表的是PP助手没安装 或者 PP助手已安装但没启动。</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/ppfe/pdlh">PP助手高速下载外部简易接入方案</a> is maintained by <a href="https://github.com/ppfe">ppfe</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
