@@ -15,22 +15,26 @@ $('#btnTest').click(function() {
 
 	// Pdlh由以下JS提供，具体问题可以找PP助手技术同学咨询
 	// http://a.img.pp.cn/upload_files/js/pp-dl-highspeed.js
-	Pdlh.downloadFast({
-		channel: channel,
-		ch_src: ch_src,
-		ch: 'dl-highspeed-demo-ch',
-		packageName: packageName,
-		durl: durl,
-		bs: bs,
-		mode: mode,
-		debug: debug
-	}, function(error, ret) {
-		if (!error) {
-			console.warn('Pdlh.downloadFast ok.');
-		} else {
-			console.warn('Pdlh.downloadFast failed.');
-		}
+	try {
+		Pdlh.downloadFast({
+			channel: channel,
+			ch_src: ch_src,
+			ch: 'dl-highspeed-demo-ch',
+			packageName: packageName,
+			durl: durl,
+			bs: bs,
+			mode: mode,
+			debug: debug
+		}, function(error, ret) {
+			if (!error) {
+				console.warn('Pdlh.downloadFast ok.');
+			} else {
+				console.warn('Pdlh.downloadFast failed.');
+			}
 
-		alert(ret.msg);
-	});
+			alert(ret.msg);
+		});
+	} catch (e) {
+		alert('e:' + e);
+	}
 });
