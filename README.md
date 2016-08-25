@@ -90,7 +90,7 @@ PP为第三方接入提供了方案相关的JS库，直接引用即可
 
 
 ## 完整例子 ##
-DEMO请移步：【[DEMO完整例子]()】
+DEMO请移步：【[DEMO完整例子](https://github.com/ppfe/pdlh/tree/master/demo)】
 
 ## 附：方案内部实现逻辑 ##
 ![](https://github.com/ppfe/pdlh/blob/master/imgs/%E6%96%B9%E6%A1%88%E5%86%85%E9%83%A8%E9%80%BB%E8%BE%91.png?raw=true)
