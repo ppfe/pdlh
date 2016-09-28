@@ -107,11 +107,11 @@
 <a id="11-config-为对象类型可传字段如下" class="anchor" href="#11-config-%E4%B8%BA%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E5%8F%AF%E4%BC%A0%E5%AD%97%E6%AE%B5%E5%A6%82%E4%B8%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.1 <code>config</code> 为对象类型，可传字段如下：</h4>
 
 <ul>
-<li>channel: [必填]PP渠道号，由PP提供</li>
+<li>channel: [必填]PP渠道号标识，用于指定要安装的PP渠道包，由PP提供</li>
 <li>ch_src: [必填]统计来源，由PP提供</li>
 <li>ch: 统计参数</li>
 <li>packageName: 目标APP包名[mode=0或者不传时，packageName必填]</li>
-<li>durl: 目标APP下载地址[mode=1时，durl必填]</li>
+<li>durl: 目标APP下载地址，即PP客户端进行高速下载的内容 [mode=1时，durl必填]</li>
 <li>bs: 商业模式选择（0:不重复刷量【默认】，1：商业模式，重复刷）</li>
 <li>mode: 合作模式（0：使用PP助手资源库下载目标App【默认】，1：强制使用业务方提供的durl下载目标App，此时durl必填）</li>
 <li>debug: 开发模式，会输出过程日志</li>
