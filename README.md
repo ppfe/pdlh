@@ -53,11 +53,11 @@ PP为第三方接入提供了方案相关的JS库，直接引用即可
 
 #### 1.1 `config` 为对象类型，可传字段如下： ####
 
-- channel: [必填]PP渠道号，由PP提供
+- channel: [必填]PP渠道号标识，用于指定要安装的PP渠道包，由PP提供
 - ch_src: [必填]统计来源，由PP提供
 - ch: 统计参数
 - packageName: 目标APP包名[mode=0或者不传时，packageName必填]
-- durl: 目标APP下载地址[mode=1时，durl必填]
+- durl: 目标APP下载地址，即PP客户端进行高速下载的内容 [mode=1时，durl必填]
 - bs: 商业模式选择（0:不重复刷量【默认】，1：商业模式，重复刷）
 - mode: 合作模式（0：使用PP助手资源库下载目标App【默认】，1：强制使用业务方提供的durl下载目标App，此时durl必填）
 - debug: 开发模式，会输出过程日志
