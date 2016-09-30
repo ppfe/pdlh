@@ -1,27 +1,30 @@
 # PP助手高速下载外部接入方案 #
 
 ## 页面接入逻辑 ##
-> 通过 `Pdlh` 方案，接入方不用考虑内部实现逻辑，只需要简单的一步就可以轻松接入了
+> 通过 `Pdlh` Js方案，接入方不用考虑PP内部高速下载的实现逻辑，只需要简单的一步就可以轻松完成接入
 
 1. 用户点击【高速下载】
-2. 调用 `Pdlh.downloadFast` 进行高速下载
+2. 页面js调用 `Pdlh.downloadFast` 触发高速下载逻辑
 
-## 合作方式 ##
-PP为第三方提供了多种合作方式方案，都可通过 `Pdlh` 接口传参实现
+- 已安装PP助手时，唤起PP助手进行高速下载和安装
+- 未安装PP助手，进行PP助手下载，安装并启动PP即可完成对目标应用的高速下载和安装
+
+## 合作方式定义 ##
+PP为第三方提供了以下合作方式定制，均可通过 `Pdlh` 接口的参数配置来启用
 
 ### a. 商业模式 ###
 
 商业模式通过接口参数 `bs`控制，具体请查看接口文档
 
-- 非商业模式：为了避免骚扰用户，PP对高速下载流程做了限制，一个用户只会下载一次PP助手，无论是否下载成功是否安装成功
-- 商业模式：无限制，PP只要判断到用户没安装PP助手客户端，流程就会走到下载PP客户端的流程
+- 非商业（bs=0）：为了避免骚扰用户，PP对高速下载流程做了限制，一个用户只会首次访问时下载一次PP助手，无论是否下载成功是否安装成功都不再触发下载PP助手
+- 商业（bs=1）：无限制，检测逻辑只要判断到用户没安装PP助手客户端（包括未激活），都将触发下载PP助手
 
 ### b. 合作模式 ###
 
 合作模式通过接口参数 `mode`控制，具体请查看接口文档
 
-- 默认模式：使用PP助手资源库下载目标App
-- 模式1：使用业务方提供的durl下载目标App
+- 内部合作（mode=0或空）：从PP助手资源库下载目标App
+- 外部合作（mode=1）：使用业务方提供的durl下载目标App
 
 ## 接入流程 ##
 ![](https://github.com/ppfe/pdlh/blob/master/imgs/%E6%8E%A5%E5%85%A5%E6%B5%81%E7%A8%8B.png?raw=true)
@@ -53,14 +56,14 @@ PP为第三方接入提供了方案相关的JS库，直接引用即可
 
 #### 1.1 `config` 为对象类型，可传字段如下： ####
 
-- channel: [必填]PP渠道号标识，用于指定要安装的PP渠道包，由PP提供
-- ch_src: [必填]统计来源，由PP提供
-- ch: 统计参数
-- packageName: 目标APP包名[mode=0或者不传时，packageName必填]
-- durl: 目标APP下载地址，即PP客户端进行高速下载的内容 [mode=1时，durl必填]
-- bs: 商业模式选择（0:不重复刷量【默认】，1：商业模式，重复刷）
-- mode: 合作模式（0：使用PP助手资源库下载目标App【默认】，1：强制使用业务方提供的durl下载目标App，此时durl必填）
-- debug: 开发模式，会输出过程日志
+- channel: [必填]渠道号标识，用于指定要安装的PP渠道包，由PP提供
+- ch_src: [必填]来源统计标识，由PP提供
+- ch: 区块统计标识，可由接入方指定，默认为default
+- packageName: 目标APP包名，通过对目标应用解包得到 [mode=0或者不传时，packageName必填]
+- durl: 目标APP地址，即PP客户端进行高速下载的内容 [mode=1时，durl必填]
+- bs: 商业模式（详见‘合作方式定义’）
+- mode: 合作模式（详见‘合作方式定义’）
+- debug: 调试模式，会输出过程日志
 
 #### 1.2 `callback` 为回调函数，返回参数如下： ####
 
@@ -70,13 +73,13 @@ PP为第三方接入提供了方案相关的JS库，直接引用即可
 #### 举个栗子 ####
 
 	Pdlh.downloadFast({
-		channel: 'pp_2',
-		ch_src: 'from_demo',
-		ch: 'from_demo_ch',
-		packageName: 'com.outfit7.talkingtom2free',
-		durl: 'http://ucdl.25pp.com/fs04/2016/01/15/7/2_613b8549eaaec403b3ee64142100a861.apk',
-		bs: 1,
-		mode: 1,
+		channel: 'pp_2',//PP渠道包标识
+		ch_src: 'from_demo',//来源统计标识
+		ch: 'from_demo_ch',//区块统计标识
+		packageName: 'com.outfit7.talkingtom2free',//目标App包名
+		durl: 'http://ucdl.25pp.com/fs04/2016/01/15/7/2_613b8549eaaec403b3ee64142100a861.apk',//目标App地址
+		bs: 1,//商业模式
+		mode: 1,//合作模式
 		debug: false
 	}, function(error, ret) {
 		if (!error) {
@@ -84,7 +87,6 @@ PP为第三方接入提供了方案相关的JS库，直接引用即可
 		} else {
 			console.warn('Pdlh.downloadFast failed.');
 		}
-
 		console.log(ret.msg);
 	});
 
