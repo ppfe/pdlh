@@ -26,18 +26,23 @@
 <a id="页面接入逻辑" class="anchor" href="#%E9%A1%B5%E9%9D%A2%E6%8E%A5%E5%85%A5%E9%80%BB%E8%BE%91" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>页面接入逻辑</h2>
 
 <blockquote>
-<p>通过 <code>Pdlh</code> 方案，接入方不用考虑内部实现逻辑，只需要简单的一步就可以轻松接入了</p>
+<p>通过 <code>Pdlh</code> Js方案，接入方不用考虑PP内部高速下载的实现逻辑，只需要简单的一步就可以轻松完成接入</p>
 </blockquote>
 
 <ol>
 <li>用户点击【高速下载】</li>
-<li>调用 <code>Pdlh.downloadFast</code> 进行高速下载</li>
+<li><p>页面js调用 <code>Pdlh.downloadFast</code> 触发高速下载逻辑</p></li>
 </ol>
 
-<h2>
-<a id="合作方式" class="anchor" href="#%E5%90%88%E4%BD%9C%E6%96%B9%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>合作方式</h2>
+<ul>
+<li>已安装PP助手时，唤起PP助手进行高速下载和安装</li>
+<li>未安装PP助手，进行PP助手下载，安装并启动PP即可完成对目标应用的高速下载和安装</li>
+</ul>
 
-<p>PP为第三方提供了多种合作方式方案，都可通过 <code>Pdlh</code> 接口传参实现</p>
+<h2>
+<a id="合作方式定义" class="anchor" href="#%E5%90%88%E4%BD%9C%E6%96%B9%E5%BC%8F%E5%AE%9A%E4%B9%89" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>合作方式定义</h2>
+
+<p>PP为第三方提供了以下合作方式定制，均可通过 <code>Pdlh</code> 接口的参数配置来启用</p>
 
 <h3>
 <a id="a-商业模式" class="anchor" href="#a-%E5%95%86%E4%B8%9A%E6%A8%A1%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>a. 商业模式</h3>
@@ -45,8 +50,8 @@
 <p>商业模式通过接口参数 <code>bs</code>控制，具体请查看接口文档</p>
 
 <ul>
-<li>非商业模式：为了避免骚扰用户，PP对高速下载流程做了限制，一个用户只会下载一次PP助手，无论是否下载成功是否安装成功</li>
-<li>商业模式：无限制，PP只要判断到用户没安装PP助手客户端，流程就会走到下载PP客户端的流程</li>
+<li>非商业（bs=0）：为了避免骚扰用户，PP对高速下载流程做了限制，一个用户只会首次访问时下载一次PP助手，无论是否下载成功是否安装成功都不再触发下载PP助手</li>
+<li>商业（bs=1）：无限制，检测逻辑只要判断到用户没安装PP助手客户端（包括未激活），都将触发下载PP助手</li>
 </ul>
 
 <h3>
@@ -55,8 +60,8 @@
 <p>合作模式通过接口参数 <code>mode</code>控制，具体请查看接口文档</p>
 
 <ul>
-<li>默认模式：使用PP助手资源库下载目标App</li>
-<li>模式1：使用业务方提供的durl下载目标App</li>
+<li>内部合作（mode=0或空）：从PP助手资源库下载目标App</li>
+<li>外部合作（mode=1）：使用业务方提供的durl下载目标App</li>
 </ul>
 
 <h2>
@@ -107,14 +112,14 @@
 <a id="11-config-为对象类型可传字段如下" class="anchor" href="#11-config-%E4%B8%BA%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E5%8F%AF%E4%BC%A0%E5%AD%97%E6%AE%B5%E5%A6%82%E4%B8%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.1 <code>config</code> 为对象类型，可传字段如下：</h4>
 
 <ul>
-<li>channel: [必填]PP渠道号标识，用于指定要安装的PP渠道包，由PP提供</li>
-<li>ch_src: [必填]统计来源，由PP提供</li>
-<li>ch: 统计参数</li>
-<li>packageName: 目标APP包名[mode=0或者不传时，packageName必填]</li>
-<li>durl: 目标APP下载地址，即PP客户端进行高速下载的内容 [mode=1时，durl必填]</li>
-<li>bs: 商业模式选择（0:不重复刷量【默认】，1：商业模式，重复刷）</li>
-<li>mode: 合作模式（0：使用PP助手资源库下载目标App【默认】，1：强制使用业务方提供的durl下载目标App，此时durl必填）</li>
-<li>debug: 开发模式，会输出过程日志</li>
+<li>channel: [必填]渠道号标识，用于指定要安装的PP渠道包，由PP提供</li>
+<li>ch_src: [必填]来源统计标识，由PP提供</li>
+<li>ch: 区块统计标识，可由接入方指定，默认为default</li>
+<li>packageName: 目标APP包名，通过对目标应用解包得到 [mode=0或者不传时，packageName必填]</li>
+<li>durl: 目标APP地址，即PP客户端进行高速下载的内容 [mode=1时，durl必填]</li>
+<li>bs: 商业模式（详见‘合作方式定义’）</li>
+<li>mode: 合作模式（详见‘合作方式定义’）</li>
+<li>debug: 调试模式，会输出过程日志</li>
 </ul>
 
 <h4>
@@ -129,13 +134,13 @@
 <a id="举个栗子" class="anchor" href="#%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>举个栗子</h4>
 
 <pre><code>Pdlh.downloadFast({
-    channel: 'pp_2',
-    ch_src: 'from_demo',
-    ch: 'from_demo_ch',
-    packageName: 'com.outfit7.talkingtom2free',
-    durl: 'http://ucdl.25pp.com/fs04/2016/01/15/7/2_613b8549eaaec403b3ee64142100a861.apk',
-    bs: 1,
-    mode: 1,
+    channel: 'pp_2', // PP渠道包标识
+    ch_src: 'from_demo', // 来源统计标识
+    ch: 'from_demo_ch', // 区块统计标识
+    packageName: 'com.outfit7.talkingtom2free', // 目标App包名
+    durl: 'http://ucdl.25pp.com/fs04/2016/01/15/7/2_613b8549eaaec403b3ee64142100a861.apk', // 目标App地址
+    bs: 1, // 商业模式
+    mode: 1, // 合作模式
     debug: false
 }, function(error, ret) {
     if (!error) {
@@ -143,7 +148,6 @@
     } else {
         console.warn('Pdlh.downloadFast failed.');
     }
-
     console.log(ret.msg);
 });
 </code></pre>
