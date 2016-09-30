@@ -43,7 +43,7 @@ PP为第三方提供了以下合作方式定制，均可通过 `Pdlh` 接口的�
 PP为第三方接入提供了方案相关的JS库，直接引用即可
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
-    <script src="http://a.img.pp.cn/upload_files/js/pp-dl-highspeed.js"></script>
+	<script src="http://a.img.pp.cn/upload_files/js/pp-dl-highspeed.js"></script>
 
 > 如果页面已有jQuery或者zepto，则不需要再引用 `zepto.min.js`
 
@@ -73,13 +73,13 @@ PP为第三方接入提供了方案相关的JS库，直接引用即可
 #### 举个栗子 ####
 
 	Pdlh.downloadFast({
-		channel: 'pp_2',//PP渠道包标识
-		ch_src: 'from_demo',//来源统计标识
-		ch: 'from_demo_ch',//区块统计标识
-		packageName: 'com.outfit7.talkingtom2free',//目标App包名
-		durl: 'http://ucdl.25pp.com/fs04/2016/01/15/7/2_613b8549eaaec403b3ee64142100a861.apk',//目标App地址
-		bs: 1,//商业模式
-		mode: 1,//合作模式
+		channel: 'pp_2', // PP渠道包标识
+		ch_src: 'from_demo', // 来源统计标识
+		ch: 'from_demo_ch', // 区块统计标识
+		packageName: 'com.outfit7.talkingtom2free', // 目标App包名
+		durl: 'http://ucdl.25pp.com/fs04/2016/01/15/7/2_613b8549eaaec403b3ee64142100a861.apk', // 目标App地址
+		bs: 1, // 商业模式
+		mode: 1, // 合作模式
 		debug: false
 	}, function(error, ret) {
 		if (!error) {
