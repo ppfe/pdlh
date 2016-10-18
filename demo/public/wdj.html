@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+    <title>WDJ高速下载DEMO</title>
+    <meta name="description" content="豌豆荚">
+
+    <style>
+        html,body{overflow-x:hidden}
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0}
+        table{border-collapse:collapse;border-spacing:0}
+        fieldset,img,iframe{border:0 none}
+        address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:400}
+        ol,ul,li{list-style:none}
+        h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:400}
+        button, input, select, textarea { font-size:100%; }
+        q:before,q:after{content:''}
+        a{text-decoration:none}
+        a:hover { text-decoration:underline;}
+        
+        body {
+            font: 14px/1.5 Microsoft YaHei,Arial,sans-serif;
+        }
+        img {
+          vertical-align: top;
+        }
+    </style>
+</head>
+
+<body>
+	<ul>
+    	<li class="require">
+    		<label>channel</label>
+    		<input type="text" id="inputChannel" value="pp_2" placeholder="豌豆荚渠道号，也叫source，由豌豆荚分配" />
+    	</li>
+    	<li class="require">
+    		<label>packageName</label>
+    		<input type="text" id="inputPackageName" value="com.outfit7.talkingtom2free" placeholder="目标APP包名" />
+    	</li>
+    	<li>
+    		<label>durl</label>
+    		<input type="text" id="inputDurl" value="http://ucdl.25pp.com/fs04/2016/01/15/7/2_613b8549eaaec403b3ee64142100a861.apk" placeholder="目标APP原始下载地址" />
+    	</li>
+        <li>
+            <label>server</label>
+            <input type="text" id="inputServer" value="http://androidppproxy.dev.uae.uc.cn" placeholder="服务器地址" />
+        </li>
+    	<li>
+		    <select id="debug">
+		    	<option value="0">prod</option>
+		    	<option value="1">debug</option>
+		    </select>
+    	</li>
+    </ul>
+    <div class="btn" id="btnTest">提交</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+    <script src="http://a.img.pp.cn/upload_files/js/wdj-dl-highspeed.js?2016101701"></script>
+
+    <script type="text/javascript">
+        $('#btnTest').click(function() {
+        var channel = $('#inputChannel').val(),
+            packageName = $('#inputPackageName').val(),
+            durl = $('#inputDurl').val(),
+            server = $('#inputServer').val(),
+            debug = !!parseInt($('#debug').val());
+
+        // Wdlh由以下JS提供，具体问题可以找PP助手或者豌豆荚技术同学咨询
+        // http://a.img.pp.cn/upload_files/js/wdj-dl-highspeed.js
+        try {
+            Wdlh.downloadFast({
+                channel: channel,
+                packageName: packageName,
+                durl: durl,
+                server: server,
+                debug: debug
+            }, function(error, ret) {
+                if (!error) {
+                    console.warn('Wdlh.downloadFast ok.');
+                } else {
+                    console.warn('Wdlh.downloadFast failed.');
+                }
+
+                alert(ret.msg);
+            });
+        } catch (e) {
+            alert('e:' + e);
+        }
+    });
+    </script>
+
+</body>
+</html>

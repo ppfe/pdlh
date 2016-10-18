@@ -13,6 +13,6 @@ const koa = require('koa'),
 const app = global.app = koa();
 
 // 静态目录
-app.use(serve(path.join(__dirname, '../release'), {}));
+app.use(serve(path.join(__dirname, './public'), {}));
 
 module.exports = app;

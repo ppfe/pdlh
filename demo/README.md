@@ -6,15 +6,15 @@
 
 ```$
 npm install
-npm run release
 npm start
 ```
 
 ### 2. DEMO页面访问 ###
-浏览器访问：[http://localhost:18340/](http://localhost:18340/)
+
+- PP高速下载DEMO：[http://localhost:18340/](http://locathost:18340/)
+- 豌豆荚高速下载DEMO：[http://localhost:18340/](http://locathost:18340/wdj.html)
 
 ## DEMO页面说明 ##
 
 1. 下载DEMO代码
-2. DEMO例子在demo文件夹
-3. 确保本地安装node.js >= 4.0
+2. 确保本地安装node.js >= 4.0
