@@ -55,11 +55,19 @@
 		    	<option value="1">debug</option>
 		    </select>
     	</li>
+        <li>
+            <select id="bs">
+                <option value="0">bs=0[常规模式]</option>
+                <option value="1">bs=1[商业模式]</option>
+            </select>
+        </li>
+
     </ul>
     <div class="btn" id="btnTest">提交</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
-    <script src="http://a.img.pp.cn/upload_files/js/wdj-dl-highspeed.js?2016101701"></script>
+    <!-- <script src="http://a.img.pp.cn/upload_files/js/wdj-dl-highspeed.js?2016101701"></script> -->
+    <script src="./wdj-dl-highspeed.js?2016101701"></script>
 
     <script type="text/javascript">
         $('#btnTest').click(function() {
@@ -67,7 +75,8 @@
             packageName = $('#inputPackageName').val(),
             durl = $('#inputDurl').val(),
             server = $('#inputServer').val(),
-            debug = !!parseInt($('#debug').val());
+            debug = !!parseInt($('#debug').val()),
+            bs = parseInt($('#bs').val());
 
         // Wdlh由以下JS提供，具体问题可以找PP助手或者豌豆荚技术同学咨询
         // http://a.img.pp.cn/upload_files/js/wdj-dl-highspeed.js
@@ -77,7 +86,8 @@
                 packageName: packageName,
                 durl: durl,
                 server: server,
-                debug: debug
+                debug: debug,
+                bs: bs
             }, function(error, ret) {
                 if (!error) {
                     console.warn('Wdlh.downloadFast ok.');
