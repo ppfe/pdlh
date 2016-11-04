@@ -41,7 +41,7 @@ PP为第三方接入提供了方案相关的JS库，直接引用即可
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
 	<script src="http://a.img.pp.cn/upload_files/js/pp-dl-highspeed.js"></script>
 
-> 如果页面已有jQuery或者zepto，则不需要再引用 `zepto.min.js`
+> 如果页面已有jQuery或者zepto(^1.2.0)，则不需要再引用 `zepto.min.js`，注意zepto要1.2.0以上，不然会不支持android 2.3.x以下版本
 
 ## 3. 接口文档 ##
 引用本JS后，会自动在window对象挂载接口对象 `Pdlh`
