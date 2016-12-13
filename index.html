@@ -110,7 +110,8 @@
 <li>channel: [必填]渠道号标识，用于指定要安装的PP渠道包，由PP提供</li>
 <li>ch_src: [必填]来源统计标识，由PP提供</li>
 <li>ch: 区块统计标识，可由接入方指定，默认为default</li>
-<li>packageName: 目标APP包名，通过对目标应用解包得到 [mode=0或者不传时，packageName必填]</li>
+<li>packageName: 目标APP包名，通过对目标应用解包得到 [mode=0或者不传时，packageName或者appId必填一个（packageName优先）]</li>
+<li>appId: 目标APP ID，应用在PP的惟一标识，[mode=0或者不传时，packageName或者appId必填一个]</li>
 <li>durl: 目标APP地址，即PP客户端进行高速下载的内容 [mode=1时，durl必填]</li>
 <li>bs: 商业模式（详见‘合作方式定义’）</li>
 <li>mode: 合作模式（详见‘合作方式定义’）</li>
