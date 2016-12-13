@@ -55,7 +55,8 @@ PP为第三方接入提供了方案相关的JS库，直接引用即可
 - channel: [必填]渠道号标识，用于指定要安装的PP渠道包，由PP提供
 - ch_src: [必填]来源统计标识，由PP提供
 - ch: 区块统计标识，可由接入方指定，默认为default
-- packageName: 目标APP包名，通过对目标应用解包得到 [mode=0或者不传时，packageName必填]
+- packageName: 目标APP包名，通过对目标应用解包得到 [mode=0或者不传时，packageName或者appId必填一个（packageName优先）]
+- appId: 目标APP ID，应用在PP的惟一标识，[mode=0或者不传时，packageName或者appId必填一个]
 - durl: 目标APP地址，即PP客户端进行高速下载的内容 [mode=1时，durl必填]
 - bs: 商业模式（详见‘合作方式定义’）
 - mode: 合作模式（详见‘合作方式定义’）
