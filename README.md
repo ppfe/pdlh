@@ -39,7 +39,7 @@ PP为第三方提供了以下合作方式定制，均可通过 `Pdlh` 接口的�
 PP为第三方接入提供了方案相关的JS库，直接引用即可
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
-	<script src="http://a.img.pp.cn/upload_files/js/pp-dl-highspeed.js"></script>
+	<script src="https://img.ucdl.pp.uc.cn/upload_files/js/pp-dl-highspeed.js"></script>
 
 > 如果页面已有jQuery或者zepto(^1.2.0)，则不需要再引用 `zepto.min.js`，注意zepto要1.2.0以上，不然会不支持android 2.3.x以下版本
 
