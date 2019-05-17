@@ -2,6 +2,8 @@
 
 ## [豌豆荚高速下载方案点这里](https://github.com/ppfe/pdlh/blob/master/%E8%B1%8C%E8%B1%86%E8%8D%9A%E6%96%B9%E6%A1%88%E5%AF%B9%E5%A4%96%E6%96%87%E6%A1%A3.md) ##
 
+## [豌豆荚包站项目下载方案点这里](https://github.com/ppfe/pdlh/blob/master/%E8%B1%8C%E8%B1%86%E8%8D%9A%E5%8C%85%E7%AB%99%E9%A1%B9%E7%9B%AE%E5%AF%B9%E5%A4%96%E6%96%87%E6%A1%A3.md) ##
+
 ## 页面接入逻辑 ##
 > 通过 `Pdlh` Js方案，接入方不用考虑PP内部高速下载的实现逻辑，只需要简单的一步就可以轻松完成接入
 

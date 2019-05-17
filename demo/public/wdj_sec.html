@@ -229,16 +229,16 @@
     <script type="text/javascript">
       // 刚进页面用于检测应用是否存在
 
-      //   Wdlh.downloadFast('com.ss.android.ugc.aweme', 'pm_pc6', 'default', {
+      //   WdjBZ.downloadFast('com.ss.android.ugc.aweme', 'pm_pc6', 'default', {
       //     server: 'http://30.102.224.91'
       //   });
 
-      function checkExist(options) {
-        Wdlh.checkExist(function(ret) {
+      function checkPackageName(options) {
+        WdjBZ.checkPackageName(function(ret) {
             if (!ret.code) {
-              console.log('Wdlh.checkExist ok.');
+              console.log('WdjBZ.checkPackageName ok.');
             } else {
-              console.log('Wdlh.checkExist failed.');
+              console.log('WdjBZ.checkPackageName failed.');
             }
 
             console.dir(ret);
@@ -246,14 +246,14 @@
       }
 
       $('#btnCheck').click(function() {
-        checkExist();
+        checkPackageName();
       });
 
       $('#btnCheckCustom').click(function() {
         var ch = $('#inputNormalCh').val(),
           packageName = $('#inputNormalPackageName').val();
 
-        checkExist({
+        checkPackageName({
           packageName: packageName,
           ch: ch
         });
@@ -265,7 +265,7 @@
           packageName = $('#inputInitPackageName').val(),
           server = $('#inputInitServer').val();
 
-        Wdlh.init({
+        WdjBZ.init({
           packageName: packageName,
           channel: channel,
           ch: ch,
@@ -273,13 +273,13 @@
         });
       });
 
-      function downloadNormal(options) {
+      function download(options) {
         try {
-          Wdlh.downloadNormal(function(ret) {
+          WdjBZ.download(function(ret) {
             if (!ret.code) {
-              console.log('Wdlh.downloadNormal ok.');
+              console.log('WdjBZ.download ok.');
             } else {
-              console.log('Wdlh.downloadNormal failed.');
+              console.log('WdjBZ.download failed.');
             }
 
             console.dir(ret);
@@ -290,14 +290,14 @@
       }
 
       $('#btnNormal').click(function() {
-        downloadNormal();
+        download();
       });
 
       $('#btnNormalCustom').click(function() {
         var ch = $('#inputNormalCh').val(),
           packageName = $('#inputNormalPackageName').val();
 
-        downloadNormal({
+        download({
           packageName: packageName,
           ch: ch
         });
@@ -305,11 +305,11 @@
 
       function downloadFast(options) {
         try {
-          Wdlh.downloadFast(function(ret) {
+          WdjBZ.downloadFast(function(ret) {
             if (!ret.code) {
-              console.log('Wdlh.downloadFast ok.');
+              console.log('WdjBZ.downloadFast ok.');
             } else {
-              console.warn('Wdlh.downloadFast failed.');
+              console.warn('WdjBZ.downloadFast failed.');
             }
             console.dir(ret);
           }, options);
