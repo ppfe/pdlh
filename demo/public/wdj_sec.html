@@ -1,336 +1,305 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
-    />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
-    <title>WDJ高速下载DEMO</title>
-    <meta name="description" content="豌豆荚" />
 
-    <script src="//g.alicdn.com/AWSC/AWSC/awsc.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+  <title>WDJ高速下载DEMO</title>
+  <meta name="description" content="豌豆荚" />
+<script src="vconsole.min.js"></script>
+  <script src="https://g.alicdn.com/AWSC/AWSC/awsc.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script src="https://img.ucdl.pp.uc.cn/upload_files/js/wdj-dl-highspeed-sec.js"></script>
+    {# <script src="./wdj-dl-highspeed-sec.js"></script> #}
 
-    <style>
-      html,
-      body {
-        overflow-x: hidden;
-      }
-      body,
-      div,
-      dl,
-      dt,
-      dd,
-      ul,
-      ol,
-      li,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      pre,
-      form,
-      fieldset,
-      input,
-      textarea,
-      p,
-      blockquote,
-      th,
-      td {
-        margin: 0;
-        padding: 0;
-      }
-      table {
-        border-collapse: collapse;
-        border-spacing: 0;
-      }
-      fieldset,
-      img,
-      iframe {
-        border: 0 none;
-      }
-      address,
-      caption,
-      cite,
-      code,
-      dfn,
-      em,
-      strong,
-      th,
-      var {
-        font-style: normal;
-        font-weight: 400;
-      }
-      ol,
-      ul,
-      li {
-        list-style: none;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-size: 100%;
-        font-weight: 400;
-      }
-      button,
-      input,
-      select,
-      textarea {
-        font-size: 100%;
-      }
-      q:before,
-      q:after {
-        content: '';
-      }
-      a {
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
+  <style>
+    html,
+    body {
+      overflow-x: hidden;
+    }
 
-      body {
-        font: 14px/1.5 Microsoft YaHei, Arial, sans-serif;
-      }
-      img {
-        vertical-align: top;
-      }
-      input {
-        width: 400px;
-      }
-    </style>
-  </head>
+    body,
+    div,
+    dl,
+    dt,
+    dd,
+    ul,
+    ol,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    pre,
+    form,
+    fieldset,
+    input,
+    textarea,
+    p,
+    blockquote,
+    th,
+    td {
+      margin: 0;
+      padding: 0;
+    }
 
-  <body>
-    <ul>
-      <li class="require">
-        <label>ch_src</label>
-        <input
-          type="text"
-          id="inputInitChannel"
-          value="pm_pc6"
-          placeholder="来源渠道/一级渠道"
-        />
-      </li>
-      <li class="require">
-        <label>ch</label>
-        <input
-          type="text"
-          id="inputInitCh"
-          value="default"
-          placeholder="来源栏目/二级渠道"
-        />
-      </li>
-      <li class="require">
-        <label>packageName</label>
-        <input
-          type="text"
-          id="inputInitPackageName"
-          value="com.ss.android.ugc.aweme"
-          placeholder="目标APP包名"
-        />
-      </li>
-      <li>
-        <label>server</label>
-        <input
-          type="text"
-          id="inputInitServer"
-          value="http://dev.server.m.pp.cn"
-          placeholder="服务器地址"
-        />
-      </li>
-    </ul>
-    <button class="btn" id="btnInit">sdk 初始化</button>
-    <br /><br /><br /><br />
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
 
-    <ul>
-      <li class="require">
-        <label>ch</label>
-        <input
-          type="text"
-          id="inputCheckCh"
-          value="default"
-          placeholder="来源栏目/二级渠道"
-        />
-      </li>
-      <li class="require">
-        <label>packageName</label>
-        <input
-          type="text"
-          id="inputCheckPackageName"
-          value="com.ss.android.ugc.aweme"
-          placeholder="目标APP包名"
-        />
-      </li>
-    </ul>
-    <button class="btn" id="btnCheck">检测包名(初始化配置)</button>
-    <button class="btn" id="btnCheckCustom">检测包名(自定义配置)</button>
-    <br /><br /><br /><br />
+    fieldset,
+    img,
+    iframe {
+      border: 0 none;
+    }
 
-    <ul>
-      <li class="require">
-        <label>ch</label>
-        <input
-          type="text"
-          id="inputNormalCh"
-          value="default"
-          placeholder="来源栏目/二级渠道"
-        />
-      </li>
-      <li class="require">
-        <label>packageName</label>
-        <input
-          type="text"
-          id="inputNormalPackageName"
-          value="com.ss.android.ugc.aweme"
-          placeholder="目标APP包名"
-        />
-      </li>
-    </ul>
-    <button class="btn" id="btnNormal">普通下载(初始化配置)</button>
-    <button class="btn" id="btnNormalCustom">普通下载(自定义配置)</button>
+    address,
+    caption,
+    cite,
+    code,
+    dfn,
+    em,
+    strong,
+    th,
+    var {
+      font-style: normal;
+      font-weight: 400;
+    }
 
-    <br /><br /><br /><br />
-    <ul>
-      <li class="require">
-        <label>ch</label>
-        <input
-          type="text"
-          id="inputFastCh"
-          value="default"
-          placeholder="来源栏目/二级渠道"
-        />
-      </li>
-      <li class="require">
-        <label>packageName</label>
-        <input
-          type="text"
-          id="inputFastPackageName"
-          value="com.ss.android.ugc.aweme"
-          placeholder="目标APP包名"
-        />
-      </li>
-    </ul>
-    <button class="btn" id="btnFast">高速下载(初始化配置)</button>
-    <button class="btn" id="btnFastCustom">高速下载(自定义配置)</button>
+    ol,
+    ul,
+    li {
+      list-style: none;
+    }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
-    <!-- <script src="http://a.img.pp.cn/upload_files/js/wdj-dl-highspeed.js?2016101701"></script> -->
-    <script src="./wdj-dl-highspeed-sec.js?2016101701"></script>
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 100%;
+      font-weight: 400;
+    }
 
-    <script type="text/javascript">
-      // 刚进页面用于检测应用是否存在
+    button,
+    input,
+    select,
+    textarea {
+      font-size: 100%;
+    }
 
-      //   WdjBZ.downloadFast('com.ss.android.ugc.aweme', 'pm_pc6', 'default', {
-      //     server: 'http://30.102.224.91'
-      //   });
+    q:before,
+    q:after {
+      content: '';
+    }
 
-      function checkPackageName(options) {
-        WdjBZ.checkPackageName(function(ret) {
-            if (!ret.code) {
-              console.log('WdjBZ.checkPackageName ok.');
-            } else {
-              console.log('WdjBZ.checkPackageName failed.');
-            }
+    a {
+      text-decoration: none;
+    }
 
-            console.dir(ret);
-          }, options);
-      }
+    a:hover {
+      text-decoration: underline;
+    }
 
-      $('#btnCheck').click(function() {
-        checkPackageName();
-      });
+    body {
+      font: 14px/1.5 Microsoft YaHei, Arial, sans-serif;
+    }
 
-      $('#btnCheckCustom').click(function() {
-        var ch = $('#inputNormalCh').val(),
-          packageName = $('#inputNormalPackageName').val();
+    img {
+      vertical-align: top;
+    }
 
-        checkPackageName({
-          packageName: packageName,
-          ch: ch
-        });
-      });
+    input {
+      width: 400px;
+    }
+  </style>
+</head>
 
-      $('#btnInit').click(function() {
-        var channel = $('#inputInitChannel').val(),
-          ch = $('#inputInitCh').val(),
-          packageName = $('#inputInitPackageName').val(),
-          server = $('#inputInitServer').val();
+<body>
+  <ul>
+    <li class="require">
+      <label>ch_src</label>
+      <input type="text" id="inputInitChannel" value="pm_pc6" placeholder="来源渠道/一级渠道" />
+    </li>
+    <li class="require">
+      <label>ch</label>
+      <input type="text" id="inputInitCh" value="default" placeholder="来源栏目/二级渠道" />
+    </li>
+    <li class="require">
+      <label>packageName</label>
+      <input type="text" id="inputInitPackageName" value="com.tencent.tmgp.sgame" placeholder="目标APP包名" />
+    </li>
+    <li>
+      <label>server</label>
+      <input type="text" id="inputInitServer" value="http://androidppproxyprea.test2.uae.uc.cn" placeholder="服务器地址" />
+    </li>
+  </ul>
+  <button class="btn" id="btnInit">sdk 初始化</button>
+  <br /><br /><br /><br />
 
-        WdjBZ.init({
-          packageName: packageName,
-          channel: channel,
-          ch: ch,
-          server: server || 'http://30.102.224.91'
-        });
-      });
+  <ul>
+    <li class="require">
+      <label>ch</label>
+      <input type="text" id="inputCheckCh" value="default" placeholder="来源栏目/二级渠道" />
+    </li>
+    <li class="require">
+      <label>packageName</label>
+      <input type="text" id="inputCheckPackageName" value="com.tencent.tmgp.sgame" placeholder="目标APP包名" />
+    </li>
+  </ul>
+  <button class="btn" id="btnCheck">检测包名(初始化配置)</button>
+  <button class="btn" id="btnCheckCustom">检测包名(自定义配置)</button>
+  <br /><br /><br /><br />
 
-      function download(options) {
-        try {
-          WdjBZ.download(function(ret) {
-            if (!ret.code) {
-              console.log('WdjBZ.download ok.');
-            } else {
-              console.log('WdjBZ.download failed.');
-            }
+  <ul>
+    <li class="require">
+      <label>ch</label>
+      <input type="text" id="inputNormalCh" value="default" placeholder="来源栏目/二级渠道" />
+    </li>
+    <li class="require">
+      <label>packageName</label>
+      <input type="text" id="inputNormalPackageName" value="com.tencent.tmgp.sgame" placeholder="目标APP包名" />
+    </li>
+  </ul>
+  <button class="btn" id="btnNormal">普通下载(初始化配置)</button>
+  <button class="btn" id="btnNormalCustom">普通下载(自定义配置)</button>
 
-            console.dir(ret);
-          }, options);
-        } catch (e) {
-          alert('e:' + e);
+  <br /><br /><br /><br />
+  <ul>
+    <li class="require">
+      <label>ch</label>
+      <input type="text" id="inputFastCh" value="default" placeholder="来源栏目/二级渠道" />
+    </li>
+    <li class="require">
+      <label>packageName</label>
+      <input type="text" id="inputFastPackageName" value="com.tencent.tmgp.sgame" placeholder="目标APP包名" />
+    </li>
+  </ul>
+  <button class="btn" id="btnFast">高速下载(初始化配置)</button>
+  <button class="btn" id="btnFastCustom">高速下载(自定义配置)</button>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script> -->
+  <!-- <script src="http://a.img.pp.cn/upload_files/js/wdj-dl-highspeed.js?2016101701"></script> -->
+  <!-- <script src="./wdj-dl-highspeed-sec.js?2016101701"></script> -->
+
+
+
+
+  <script type="text/javascript">
+    var vConsole = new VConsole();
+    // 刚进页面用于检测应用是否存在
+
+    //   WdjBZ.downloadFast('com.tencent.tmgp.sgame', 'pm_pc6', 'default', {
+    //     server: 'http://30.102.224.91'
+    //   });
+
+    function checkPackageName(options) {
+      WdjBZ.checkPackageName(function (ret) {
+        if (!ret.code) {
+          console.log('WdjBZ.checkPackageName ok.');
+        } else {
+          console.log('WdjBZ.checkPackageName failed.');
         }
+
+        console.dir(ret);
+      }, options);
+    }
+
+    $('#btnCheck').click(function () {
+      checkPackageName();
+    });
+
+    $('#btnCheckCustom').click(function () {
+      var ch = $('#inputCheckCh').val(),
+        packageName = $('#inputCheckPackageName').val();
+
+      checkPackageName({
+        packageName: packageName,
+        ch: ch
+      });
+    });
+
+    $('#btnInit').click(function () {
+      var channel = $('#inputInitChannel').val(),
+        ch = $('#inputInitCh').val(),
+        packageName = $('#inputInitPackageName').val(),
+        server = $('#inputInitServer').val();
+
+      WdjBZ.init({
+        packageName: packageName,
+        channel: channel,
+        ch: ch,
+        server: server || 'http://30.102.224.91'
+      });
+    });
+
+    function download(options) {
+      try {
+        WdjBZ.download(function (ret) {
+          if (!ret.code) {
+            console.log('WdjBZ.download ok.');
+          } else {
+            console.log('WdjBZ.download failed.');
+          }
+
+          console.dir(ret);
+        }, options);
+      } catch (e) {
+        alert('e:' + e);
       }
+    }
 
-      $('#btnNormal').click(function() {
-        download();
+    $('#btnNormal').click(function () {
+      download();
+    });
+
+    $('#btnNormalCustom').click(function () {
+      var ch = $('#inputNormalCh').val(),
+        packageName = $('#inputNormalPackageName').val();
+
+      download({
+        packageName: packageName,
+        ch: ch
       });
+    });
 
-      $('#btnNormalCustom').click(function() {
-        var ch = $('#inputNormalCh').val(),
-          packageName = $('#inputNormalPackageName').val();
-
-        download({
-          packageName: packageName,
-          ch: ch
-        });
-      });
-
-      function downloadFast(options) {
-        try {
-          WdjBZ.downloadFast(function(ret) {
-            if (!ret.code) {
-              console.log('WdjBZ.downloadFast ok.');
-            } else {
-              console.warn('WdjBZ.downloadFast failed.');
-            }
-            console.dir(ret);
-          }, options);
-        } catch (e) {
-          alert('e:' + e);
-        }
+    function downloadFast(options) {
+      try {
+        WdjBZ.downloadFast(function (ret) {
+          if (!ret.code) {
+            console.log('WdjBZ.downloadFast ok.');
+          } else {
+            console.warn('WdjBZ.downloadFast failed.');
+          }
+          console.dir(ret);
+        }, options);
+      } catch (e) {
+        alert('e:' + e);
       }
+    }
 
-      $('#btnFast').click(function() {
-        downloadFast();
+    $('#btnFast').click(function () {
+      downloadFast();
+    });
+
+    $('#btnFastCustom').click(function () {
+      var ch = $('#inputFastCh').val(),
+        packageName = $('#inputFastPackageName').val();
+
+      downloadFast({
+        packageName: packageName,
+        ch: ch
       });
+    });
+  </script>
+</body>
 
-      $('#btnFast').click(function() {
-        var ch = $('#inputFastCh').val(),
-          packageName = $('#inputFastPackageName').val();
-
-        downloadFast({
-          packageName: packageName,
-          ch: ch
-        });
-      });
-    </script>
-  </body>
 </html>
