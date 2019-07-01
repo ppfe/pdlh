@@ -13,8 +13,8 @@
 <script src="vconsole.min.js"></script>
   <script src="https://g.alicdn.com/AWSC/AWSC/awsc.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
-  <script src="https://img.ucdl.pp.uc.cn/upload_files/js/wdj-dl-highspeed-sec.js"></script>
-    {# <script src="./wdj-dl-highspeed-sec.js"></script> #}
+  <!-- <script src="https://img.ucdl.pp.uc.cn/upload_files/js/wdj-dl-highspeed-sec.js"></script>-->
+    <script src="./wdj-dl-highspeed-sec.js"></script>
 
   <style>
     html,
@@ -138,6 +138,14 @@
       <input type="text" id="inputInitPackageName" value="com.tencent.tmgp.sgame" placeholder="目标APP包名" />
     </li>
     <li>
+      <label>downloadUrl</label>
+      <input type="text" id="inputInitDownloadUrl" value="" placeholder="高速下载豌豆荚资源库没包时的下载链接" />
+    </li>
+    <li>
+      <label>callWdj(豌豆荚存在的情况下是否唤起豌豆荚，默认唤起)</label>
+      <input type="checkbox" id="inputInitCallWdj" checked="checked" placeholder="" />
+    </li>
+    <li>
       <label>server</label>
       <input type="text" id="inputInitServer" value="http://androidppproxyprea.test2.uae.uc.cn" placeholder="服务器地址" />
     </li>
@@ -181,6 +189,10 @@
     <li class="require">
       <label>packageName</label>
       <input type="text" id="inputFastPackageName" value="com.tencent.tmgp.sgame" placeholder="目标APP包名" />
+    </li>
+    <li>
+      <label>downloadUrl</label>
+      <input type="text" id="inputFastDownloadUrl" value="" placeholder="高速下载豌豆荚资源库没包时的下载链接" />
     </li>
   </ul>
   <button class="btn" id="btnFast">高速下载(初始化配置)</button>
@@ -231,12 +243,18 @@
       var channel = $('#inputInitChannel').val(),
         ch = $('#inputInitCh').val(),
         packageName = $('#inputInitPackageName').val(),
+        downloadUrl = $('#inputInitDownloadUrl').val(),
+        callWdj = $('#inputInitCallWdj')[0].checked,
         server = $('#inputInitServer').val();
+
+        console.dir(callWdj);
 
       WdjBZ.init({
         packageName: packageName,
         channel: channel,
         ch: ch,
+        downloadUrl: downloadUrl,
+        callWdj: callWdj,
         server: server || 'http://30.102.224.91'
       });
     });
@@ -292,11 +310,13 @@
 
     $('#btnFastCustom').click(function () {
       var ch = $('#inputFastCh').val(),
-        packageName = $('#inputFastPackageName').val();
+        packageName = $('#inputFastPackageName').val(),
+        downloadUrl = $('#inputFastDownloadUrl').val();
 
       downloadFast({
         packageName: packageName,
-        ch: ch
+        ch: ch,
+        downloadUrl: downloadUrl,
       });
     });
   </script>
